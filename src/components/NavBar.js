@@ -42,7 +42,7 @@ const ResponsiveAppBar = () => {
       <Container maxWidth="xl" >
         <Toolbar disableGutters >
          <IconButton 
-             onClick={() => navigate('/')}
+             onClick={() => navigate('/allshifts')}
              color="secondary"
              aria-label="add to shopping cart"  sx={{ color:"#57ce52"}}>
               <HomeRoundedIcon />
@@ -164,7 +164,7 @@ const ResponsiveAppBar = () => {
               <Button   
                 onClick={()=>{
                     handleCloseNavMenu()
-                    navigate('/deleteInspector')
+                    navigate('/allshifts')
                 }}
                 sx={{ my: 2, color: '#57ce52', display: 'block' }}
               >

@@ -9,6 +9,8 @@ import Administrator from './components/Administrator';
 import AddShift from './components/AddShift';
 import AddInspector from './components/AddInspector';
 import DeleteInspector from './components/DeleteInspector';
+import AllShifts from './components/AllShifts';
+import Shift from './components/Shift';
 // import DeleteShift from './components/DeleteShift';
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
       {/* <Route path='/deleteShift' element={<DeleteShift/>}/> */}
       <Route path='/addInspactor' element={<AddInspector/>}/>
       <Route path='/deleteInspector' element={<DeleteInspector/>}/>
+      <Route path='/allshifts' element={<AllShifts/>}/>
+      <Route path=':id' element={<Shift/>}/>
       <Route path='*' element={<Home/>}/>
 
 

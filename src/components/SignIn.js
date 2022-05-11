@@ -32,7 +32,11 @@ export default function SignIn() {
         console.log(res.data);
         // setfamilyCode(res.data);
         if(res.data!==null)
+          { 
             localStorage.setItem('userName',res.data.name)
+            localStorage.setItem('userPass',res.data.pass)
+          }
+
         return res.data;
       }
 
@@ -45,14 +49,14 @@ export default function SignIn() {
         setbool(2);
     }
     //אם הוא עובד קיים
-    else if (await sendToDb() !== 0) {
+    else if (await sendToDb() !== null) {
         console.log('i am employee');
         setbool(1);
         localStorage.setItem('status','employee')
       }
       else {
         console.log('error');
-        setbool(3);
+        setbool(3);        
         // seterror(false);
       }
     // console.log({
@@ -61,7 +65,7 @@ export default function SignIn() {
     // });
   };
 if(bool===1){
-  navigate('/employee')
+  navigate('/allshifts')
 }
 else if(bool===2){
   navigate('/administator')

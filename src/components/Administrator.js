@@ -50,7 +50,7 @@ export default function Administrator() {
 // Object.values(x)
      React.useEffect(async ()=>{
       const promise = await axios.get("https://localhost:44314/api/Inspector" );
-       console.log(promise.data);
+      console.log(promise.data);
       let x=promise.data;
       let arr=[];
       console.log(x);
