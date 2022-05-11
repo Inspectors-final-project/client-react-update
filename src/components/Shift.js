@@ -59,7 +59,7 @@ export default function Shift() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-//עד כאן לטבלה      
+//עד כאן לטבלה id    inspector_id    dayWork    start_shift    stop_shift   
 const params=useParams()
 const location=useLocation()
     return(
@@ -71,7 +71,7 @@ const location=useLocation()
                shift {params.id}
                </div>
                     <div> 
-            { location.state.numShifts[(params.id-1)].name} 
+            { location.state.shifts[(params.id-1)].name} 
                     </div>
                     <Paper sx={{ width: '100%' }}>
       <TableContainer sx={{ maxHeight: 440 ,maxWidth:400}}>
