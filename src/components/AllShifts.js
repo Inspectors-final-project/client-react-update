@@ -12,7 +12,7 @@ export default function AllShifts() {
       const navigate=useNavigate(); 
 
       React.useEffect(async ()=>{
-        const promise = await axios.get("https://localhost:44314/api/WorkHours/PostWorkHoursToInspectorToday",currUser );
+        const promise = await axios.post("https://localhost:44314/api/WorkHours/PostWorkHoursToInspectorToday",currUser );
         // console.log(promise.data);
         let x=promise.data;
         let arr=[];
@@ -43,7 +43,7 @@ return (
                          variant="contained"
                          size="large"
                          onClick={() => {                              
-                             navigate("/"+(index+1),{state:{shifts}})
+                             navigate("/"+(index+1),{state:{value}})
                          }}
                          sx={{
                              p: 2,

@@ -90,7 +90,8 @@ setrows(arr);
 // return <DeleteShift/>
 //     }
 return ( rows && <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+  
+      {/* <AppBar position="static">
         <Toolbar>
           <IconButton
             size="large"
@@ -99,7 +100,7 @@ return ( rows && <Box sx={{ flexGrow: 1 }}>
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            {/* <MenuIcon /> */}
+            <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             פקחים-קווים
@@ -107,7 +108,7 @@ return ( rows && <Box sx={{ flexGrow: 1 }}>
           <Button onClick={()=>setstatus(1)} color="inherit">הוספת עובד</Button>
           <Button onClick={()=>setstatus(2)} color="inherit">מחיקת עובד</Button>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
 
 
       {/* <ThemeProvider theme={theme}> */}
