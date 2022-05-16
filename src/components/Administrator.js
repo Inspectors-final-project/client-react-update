@@ -37,18 +37,22 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
   // hide last border
   '&:last-child td, &:last-child th': {
-    border: 0,
+    border: 0, 
   },
 }));
 // function createData(name, password, city, area,street, numHouse,phone,lon,lat) {
 //   return { name, password, city, area,street, numHouse,phone,lon,lat};
 // }
 export default function Administrator() {
+  console.log("aaa");
     const [status, setstatus] = useState(0);
     const[rows,setrows]=useState(null);
     const [shift,setshift]=useState(null);
 // Object.values(x)
-     React.useEffect(async ()=>{
+     React.useEffect(()=>{
+       async function fetchData(){
+        console.log('bbbb');
+       debugger;
       const promise = await axios.get("https://localhost:44314/api/Inspector" );
       console.log(promise.data);
       let x=promise.data;
@@ -61,11 +65,14 @@ export default function Administrator() {
         // debugger;
       arr.push( { name:element.inspector_name, password:element.inspector_password, city:element.city, area:element.area,street:element.street, numHouse:element.num_house,phone:element.phone,
       lon:element.inspector_lon,lat:element.inspector_lat})
+      
 });
 console.log(arr);
 setrows(arr);
+       }
+       fetchData();
 
-    },[])
+    },[]);
 // async function sendToDb() {
   
 //   const promise = await axios.get("https://localhost:44314/api/Inspector" );
