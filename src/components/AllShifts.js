@@ -9,14 +9,13 @@ import { textAlign } from '@mui/system';
 export default function AllShifts() { 
    
       const [shifts,setShifts]=React.useState()
-      const [currUserId, setCurUserId] = React.useState(parseInt( localStorage.getItem('userID'))) 
+      const [currUserId, setCurUserId] = React.useState({'pass':localStorage.getItem('userPass')}) 
       const navigate=useNavigate(); 
-      debugger;
+
       React.useEffect(()=>{
           async function fetchData(){
-          console.log("allshift!");
-          debugger;
-        const promise = await axios.post("https://localhost:44314/api/WorkHours/PostWorkHoursToInspectorToday",currUserId
+
+        const promise = await axios.post("https://localhost:44314/api/WorkHours",currUserId
          );
          debugger;
         // console.log(promise.data);
