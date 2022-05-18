@@ -49,10 +49,11 @@ export default function Administrator() {
     const[rows,setrows]=useState(null);
     const [shift,setshift]=useState(null);
 // Object.values(x)
+ debugger;
      React.useEffect(()=>{
        async function fetchData(){
         console.log('bbbb');
-       debugger;
+      
       const promise = await axios.get("https://localhost:44314/api/Inspector" );
       console.log(promise.data);
       let x=promise.data;
@@ -98,26 +99,7 @@ setrows(arr);
 //     }
 return ( rows && <Box sx={{ flexGrow: 1 }}>
   
-      {/* <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            פקחים-קווים
-          </Typography>
-          <Button onClick={()=>setstatus(1)} color="inherit">הוספת עובד</Button>
-          <Button onClick={()=>setstatus(2)} color="inherit">מחיקת עובד</Button>
-        </Toolbar>
-      </AppBar> */}
-
-
+  
       {/* <ThemeProvider theme={theme}> */}
       <Container component="main" maxWidth="lg">
       <CssBaseline />

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Grid, Button, Box, SvgIcon } from '@mui/material'
 import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import axios from 'axios';
 import Shift from './Shift';
 import { textAlign } from '@mui/system';
@@ -8,28 +9,34 @@ import { textAlign } from '@mui/system';
 export default function AllShifts() { 
    
       const [shifts,setShifts]=React.useState()
-      const [currUser, setCurUser] = React.useState(localStorage.getItem('userName')) 
+      const [currUserId, setCurUserId] = React.useState(parseInt( localStorage.getItem('userID'))) 
       const navigate=useNavigate(); 
-
-      React.useEffect(async ()=>{
-        const promise = await axios.post("https://localhost:44314/api/WorkHours/PostWorkHoursToInspectorToday",currUser );
+      debugger;
+      React.useEffect(()=>{
+          async function fetchData(){
+          console.log("allshift!");
+          debugger;
+        const promise = await axios.post("https://localhost:44314/api/WorkHours/PostWorkHoursToInspectorToday",currUserId
+         );
+         debugger;
         // console.log(promise.data);
         let x=promise.data;
         let arr=[];
-        // console.log(x);
+        console.log(x);
         // debugger;
         // console.log(Object.values(x));
         Object.values(x).forEach(element => {
           console.log(element);
           // debugger;
         arr.push( { id:element.id, begining_time:element.start_shift, end_time:element.stop_shift}) 
-        
   });
-  setShifts(arr);
-//   console.log(arr);
-      },[])
+ setShifts(arr);
 
-return (
+ }fetchData();
+  
+console.log(shifts); },[]);
+
+return (shifts &&
 <>
     <Grid container direction='column' sx={{marginTop:'60px'}}>
               

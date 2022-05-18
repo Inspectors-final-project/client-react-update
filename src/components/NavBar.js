@@ -12,15 +12,15 @@ import { useNavigate } from 'react-router-dom';
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [currUser, setCurUser] = React.useState(JSON.parse(localStorage.getItem('userName')))
+  const [currUser, setCurUser] = React.useState(localStorage.getItem('userName'));
   const navigate=useNavigate()
 
-  React.useEffect(()=>{
-      const u=JSON.parse(localStorage.getItem('userName'));
-      if(u){
-          setCurUser(u);
-      }
-  },[currUser])
+  // React.useEffect(()=>{
+  //     const u=localStorage.getItem('userName');
+  //     if(u){
+  //         setCurUser(u);
+  //     }
+  // },[])
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -42,7 +42,7 @@ const ResponsiveAppBar = () => {
       <Container maxWidth="xl" >
         <Toolbar disableGutters >
          <IconButton 
-             onClick={() => navigate('/allshifts')}
+             onClick={() => navigate('/')}
              color="secondary"
              aria-label="add to shopping cart"  sx={{ color:"#57ce52"}}>
               <HomeRoundedIcon />
@@ -107,7 +107,7 @@ const ResponsiveAppBar = () => {
                אודות
               </Button>      
           </Box>
-          { !currUser && !localStorage.getItem('user')?
+          { !currUser && !localStorage.getItem('userName')?
           <>
            <Box sx={{ flexGrow:1, display: { xs: 'none', md: 'flex' } }} variant="contained" color="success" dir="ltr">           
               <Button   

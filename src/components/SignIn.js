@@ -33,8 +33,9 @@ export default function SignIn() {
         // setfamilyCode(res.data);
         if(res.data!==null)
           { 
-            localStorage.setItem('userName',res.data.name)
-            localStorage.setItem('userPass',res.data.pass)
+            localStorage.setItem('userName',res.data.inspector_name)
+            localStorage.setItem('userPass',res.data.inspector_password)
+            localStorage.setItem('userID',res.data.inspector_id)
           }
 
         return res.data;
@@ -45,6 +46,8 @@ export default function SignIn() {
     const data = new FormData(event.currentTarget);
     if (parseInt(data.get('password')) === 100){
       localStorage.setItem('status','admin')
+      localStorage.setItem('userName','admin')
+      localStorage.setItem('userPass','100')
         console.log('administraitor');
         setbool(2);
     }
