@@ -15,6 +15,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import AddInspector from './AddInspector';
 import { useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import DeleteInspector from './DeleteShift';
 import TextField from '@mui/material/TextField';
 import { Grid } from '@mui/material';
@@ -35,17 +36,18 @@ import Link from '@mui/material/Link';
 //   ];
 
 
-export default function AddShift(props) {
+export default function AddShift() {
+  const location=useLocation();
   const[deleteUpdate,setdeleteUpdate]=useState();
     const [add,setadd]=useState({'daywork':null,'startShift':null,'stopShift':null})
     const [status, setstatus] = useState(0);
     const[rows,setrows]=useState(null);
     const [pass, setpass] =useState({'pass':null});
     const[error,seterror]=useState(false);
-    React.useEffect(async()=>{
-        pass.pass = props.pass;
+    React.useEffect(()=>{ async function fetchData()
+       { pass.pass = location.state;
         setpass({ ...pass });
-        console.log(props.pass);
+        console.log(pass.pass);
         const promise = await axios.post("https://localhost:44314/api/WorkHours/PostAllWorkHours",pass );
         
          console.log(promise.data);
@@ -84,53 +86,16 @@ export default function AddShift(props) {
           
   });
   console.log(arr);
-  setrows(arr);
-  
+  setrows(arr);}
+  fetchData();
       },[])
-      // const addShift = async(event) => {
-      //   event.preventDefault();
-      //   const data = new FormData(event.currentTarget);
-      //   if (await sendToDb() !== 0){
-      //     seterror(true)
-      //   }
-      //   else{
-          
-      //     const promise = axios.post("https://localhost:44314/api/Inspector", inspector);
-      //         const res = await promise;
-      //         console.log(res.data);
-      //         return res.data;
-      //   }
-        
-      // };
+    
 const deleteUpdateShift=()=>{
 
 }
-if(status===1){
-    return <AddInspector/>
- }
- else if(status===2){
-   console.log(status);
-     return <DeleteInspector/>
- }
+
 return (rows && <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            {/* <MenuIcon /> */}
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            פקחים-קווים
-          </Typography>
-          <Button onClick={()=>setstatus(1)} color="inherit">הוספת עובד</Button>
-          <Button onClick={()=>setstatus(2)} color="inherit">מחיקת עובד</Button>
-        </Toolbar>
-      </AppBar>
+        
       <Container component="main">
         <CssBaseline />
         <Box
@@ -145,7 +110,7 @@ return (rows && <Box sx={{ flexGrow: 1 }}>
 
               <Grid item xs={8}  sm={8} lg={8}>
                 {/* style={{margin:"30px", marginLeft:"400px"}} */}
-      <TableContainer component={Paper} sx={{ maxWidth: 700 }} >
+      <TableContainer component={Paper} sx={{ maxWidth: 700 }} dir='rtl' >
       <Table sx={{ maxWidth: 700 }} aria-label="simple table">
         <TableHead>
           <TableRow>

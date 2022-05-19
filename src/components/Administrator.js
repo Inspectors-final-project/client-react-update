@@ -22,6 +22,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.white,
@@ -47,7 +48,7 @@ export default function Administrator() {
   console.log("aaa");
     const [status, setstatus] = useState(0);
     const[rows,setrows]=useState(null);
-    const [shift,setshift]=useState(null);
+    const navigate=useNavigate();
 // Object.values(x)
  debugger;
      React.useEffect(()=>{
@@ -74,29 +75,7 @@ setrows(arr);
        fetchData();
 
     },[]);
-// async function sendToDb() {
-  
-//   const promise = await axios.get("https://localhost:44314/api/Inspector" );
-//   // const res =  promise;
-//    console.log(promise.data);
-  
-//   return promise.data.data;
-// };
-// console.log(rows);
-    console.log(status);
-    if(status===1){
-       return <AddInspector/>
-    }
-    else if(status===2){
-      console.log(status);
-        return <DeleteInspector/>
-    }
-    if(shift!==null){
-      return <AddShift pass={shift}/>
-    }
-//     else if(shift===2){
-// return <DeleteShift/>
-//     }
+
 return ( rows && <Box sx={{ flexGrow: 1 }}>
   
   
@@ -135,7 +114,7 @@ return ( rows && <Box sx={{ flexGrow: 1 }}>
               <StyledTableCell align="right">{row.phone}</StyledTableCell>
               <StyledTableCell align="right">{row.lon}</StyledTableCell>
               <StyledTableCell align="right">{row.lat}</StyledTableCell>
-              <Button onClick={()=>setshift(row.password)} style={{margin: "5px"}} variant="outlined">משמרת</Button>
+              <Button onClick={()=>navigate('/addShift',{state:row.password})} style={{margin: "5px"}} variant="outlined">משמרת</Button>
 
               {/* <Button onClick={()=>setshift(2)} variant="outlined">מחיקת משמרת</Button> */}
             </StyledTableRow>

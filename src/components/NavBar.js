@@ -140,6 +140,17 @@ const ResponsiveAppBar = () => {
               <Button   
                 onClick={()=>{
                     handleCloseNavMenu()
+                    navigate('/administator')
+                }}
+                sx={{ my: 2, color: '#57ce52', display: 'block' }}
+              >
+              כל העובדים
+              </Button>      
+          </Box>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>           
+              <Button   
+                onClick={()=>{
+                    handleCloseNavMenu()
                     navigate('/addInspactor')
                 }}
                 sx={{ my: 2, color: '#57ce52', display: 'block' }}

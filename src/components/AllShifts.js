@@ -59,7 +59,7 @@ return (shifts &&
                          }}>
                          <div sx={{textAlign:'center'}}>
                         {index+1}  משמרת
-                        {value.begining_time}-{value.end_time}
+                     <div>   {value.begining_time}-{value.end_time}</div>
                         </div>
                          </Button>
                          })
@@ -67,7 +67,7 @@ return (shifts &&
                        
                         </>
                     </Grid>
-                </Grid>  <Outlet/>
+                </Grid>  
             </Grid>
           
             </>

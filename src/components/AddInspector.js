@@ -19,6 +19,8 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Shift from './Shift';
+import { useNavigate } from 'react-router-dom';
+// import swal from "sweetalert2"
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -34,6 +36,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function AddInspector() {
+  const navigate=useNavigate();
   const pass={'pass':null}
   const [error, seterror] = useState(false);
     const [inspector, setinspector] = useState({ 'inspector_name': null ,'city':null,
@@ -63,6 +66,13 @@ const toShift=(event)=>{
       const promise = axios.post("https://localhost:44314/api/Inspector", inspector);
           const res = await promise;
           console.log(res.data);
+        //   swal.fire({
+        //     title: '',
+        //     text: 'הפרטים נקלטו בהצלחה!! המשך יום מוצלח!!! ',
+        //     icon: 'success',
+        //     confirmButtonText: 'חזרה לדף הבית',
+        //     confirmButtonColor: '#3085d6',
+        // }).then(() => { navigate('/') })
           return res.data;
     }
     
@@ -71,23 +81,7 @@ const toShift=(event)=>{
   return (
   
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            {/* <MenuIcon /> */}
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            פקחים-קווים
-          </Typography>
-        
-        </Toolbar>
-      </AppBar>
+     
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
