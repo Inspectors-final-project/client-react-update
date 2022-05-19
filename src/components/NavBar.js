@@ -4,7 +4,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import Avatar from '@mui/material/Avatar';
 import { useNavigate } from 'react-router-dom';
-
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 // const pages = [];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -16,11 +17,12 @@ const ResponsiveAppBar = () => {
   const navigate=useNavigate()
 
   // React.useEffect(()=>{
+ 
   //     const u=localStorage.getItem('userName');
   //     if(u){
   //         setCurUser(u);
   //     }
-  // },[])
+  // },[currUser])
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -169,6 +171,10 @@ const ResponsiveAppBar = () => {
                מחק עובד
               </Button>      
           </Box>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} >           
+              <AdminPanelSettingsIcon sx={{ fontSize:'40px' }}/>  
+              <div>מנהל מערכת</div>   
+          </Box>
           </>:
           <>
            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>           
@@ -181,6 +187,10 @@ const ResponsiveAppBar = () => {
               >
                המשמרות שלי
               </Button>      
+          </Box>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>           
+              <AccountCircleIcon sx={{ fontSize:'40px' }}/> 
+              <div>שלום ל{currUser}</div>   
           </Box>
           </>}
           </>}
