@@ -12,8 +12,9 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 const columns = [
-    { id: 'get_on_line', label: 'עליה על קו', minWidth: 70 },
-    { id: 'stop', label: 'ירידה בתחנה', minWidth: 100 },     
+   
+    { id: 'stop', label: 'בתחנה', minWidth: 100 }, 
+     { id: 'get_on_line', label: 'עליה על קו', minWidth: 70 },  
   ];
   
   function createData(get_on_line, stop) {
@@ -22,25 +23,27 @@ const columns = [
   }
   
   const rows =[];
-
+  function filRows(){
+        arr.forEach(el=>{
+          rows.add(createData(el.line,el.stopName))
+        })
+  }
+//s.stop_code, s.stop_name, s.stop_lon.Value, s.stop_lat.Value, r.route_short_name, r.route_long_name
 export default function Shift() {
     const params=useParams()
     const location=useLocation()
-
-    React.useEffect(async ()=>{
-        const promise = await axios.post("",location.state.value.id );
-        // console.log(promise.data);
-        let x=promise.data;
-        let arr=[];
-        // console.log(x);
-        // debugger;
-        // console.log(Object.values(x));
+    const [currWorkID, setCurrWorkID] = React.useState({'pass':location.state.value.id}) 
+    const [arr, setarr] = React.useState(null) 
+    React.useEffect(  ()=>{async function fetchData()
+{        const promise = await axios.post("https://localhost:44314/api/Result/PostResult",currWorkID );
+         console.log(promise.data);
+        let x=promise.data;     
         Object.values(x).forEach(element => {
-          console.log(element);
-          // debugger;
-        rows.push( { }) 
-        
+          arr.push({stopId:element.stop_code,stopName:element.stop_name,line:element.route_short_name,stopLat:element.stop_lon.Value,stopLen:element.stop_lon.Value})    
   });
+}
+  fetchData();
+  filRows();
 
 //   console.log(arr);
       },[])
