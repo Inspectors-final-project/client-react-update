@@ -43,13 +43,14 @@ class ShowRouteMap extends React.Component {
   
     render() {
       return (
-        <div className="map-container">
+        <div className="map-container"  style={{width:'20%',height:'50%'}}>
           <Map
             google={this.props.google}
             className={"map"}
             zoom={4}
             // initialCenter={this.props.center}
             onReady={this.handleMapReady}
+            style={{width:'20%',height:'50%'}}
           />
         </div>
       );

@@ -82,7 +82,7 @@ const toShift=(event)=>{
   
     <Box sx={{ flexGrow: 1 }}>
      
-    <ThemeProvider theme={theme}>
+
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -257,7 +257,7 @@ const toShift=(event)=>{
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2 , backgroundColor:"#8e24aa"}}
             //   onClick={async () => {
             //     console.log('hhhhhhh');
                 
@@ -285,7 +285,7 @@ const toShift=(event)=>{
         </Box>
         <Copyright sx={{ mt: 5 }} />
       </Container>
-    </ThemeProvider>
+
     </Box>
   
   );

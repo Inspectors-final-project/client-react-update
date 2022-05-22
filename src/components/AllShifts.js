@@ -14,11 +14,9 @@ export default function AllShifts() {
 
       React.useEffect(()=>{
           async function fetchData(){
-
-        const promise = await axios.post("https://localhost:44314/api/WorkHours",currUserId
-         );
-         debugger;
-        // console.log(promise.data);
+        const promise = await axios.post("https://localhost:44314/api/WorkHours",currUserId);
+        //  debugger;
+        console.log(promise.data);
         let x=promise.data;
         let arr=[];
         console.log(x);

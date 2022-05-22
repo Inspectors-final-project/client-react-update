@@ -64,7 +64,7 @@ export default function DeleteInspector() {
   return (
     <Box sx={{ flexGrow: 1 }}>
 
-    <ThemeProvider theme={theme}>
+
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -117,7 +117,7 @@ export default function DeleteInspector() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2 ,  backgroundColor:"#8e24aa"}}
               // onClick={async () => {
               //   console.log('hhhhhhh');
                 
@@ -140,7 +140,7 @@ export default function DeleteInspector() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
+
     </Box>
   );
 }

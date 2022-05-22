@@ -1,8 +1,8 @@
 import * as React from 'react';
-import MapContainer from './MapContainer';
+import logo from '../logo.png'
 export default function Home() {
-return (<div>
-    Welcome!
-    {/* <MapContainer /> */}
+return (<div style={{alignItems:'center',justifyContent:'center',textAlign:'center'}}>
+         <img src={logo} style={{width:'30%',height:'30%'}}/>  
+
 </div>)
 }

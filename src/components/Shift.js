@@ -11,40 +11,58 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import ShowRouteMap from './Map';
+import { width } from '@mui/system';
 const columns = [
    
     { id: 'stop', label: 'בתחנה', minWidth: 100 }, 
-     { id: 'get_on_line', label: 'עליה על קו', minWidth: 70 },  
+    { id: 'stop_num', label: 'מספר תחנה', minWidth: 70 } ,
+     { id: 'get_on_line', label: 'עליה על קו', minWidth: 70 }
+     
   ];
   
-  function createData(get_on_line, stop) {
+  function createData(stop,stop_num,get_on_line) {
     
-    return {get_on_line, stop };
+    return {stop,stop_num,stop_num,get_on_line};
   }
   
-  const rows =[];
-  function filRows(){
-        arr.forEach(el=>{
-          rows.add(createData(el.line,el.stopName))
-        })
-  }
+
+
 //s.stop_code, s.stop_name, s.stop_lon.Value, s.stop_lat.Value, r.route_short_name, r.route_long_name
 export default function Shift() {
     const params=useParams()
     const location=useLocation()
     const [currWorkID, setCurrWorkID] = React.useState({'pass':location.state.value.id}) 
-    const [arr, setarr] = React.useState(null) 
+    const [dataMap, setdataMap] = React.useState([]) 
+    const [myRoute, setMyRoute] = React.useState(null) 
+    const [rows,setRows]=React.useState([]) 
+//     function filRows(){
+//       arr.forEach(el=>{
+//         rows.add(createData(el.stopName,el.line))
+//       })
+// }
     React.useEffect(  ()=>{async function fetchData()
-{        const promise = await axios.post("https://localhost:44314/api/Result/PostResult",currWorkID );
-         console.log(promise.data);
-        let x=promise.data;     
+       {
+         
+        const promise = await axios.post("https://localhost:44314/api/Result",currWorkID );
+        debugger
+        console.log(promise.data);
+        let x=promise.data;  
+        let arr=[]   
         Object.values(x).forEach(element => {
-          arr.push({stopId:element.stop_code,stopName:element.stop_name,line:element.route_short_name,stopLat:element.stop_lon.Value,stopLen:element.stop_lon.Value})    
-  });
-}
-  fetchData();
-  filRows();
+        arr.push({stopId:element.stopCode,stopName:element.stopName,line:element.routeShortName,stopLat:element.stopLat,stopLen:element.stopLon});
+          rows.push(createData(element.stopName,element.stopCode,element.routeShortName));
+          dataMap.push({ lat:element.stopLat,lng:element.stopLon})
+          console.log(dataMap)
+          console.log(rows)
 
+  });
+ 
+    setMyRoute(arr);  
+}
+  fetchData()
+   
+ 
 //   console.log(arr);
       },[])
 
@@ -59,19 +77,19 @@ export default function Shift() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-//עד כאן לטבלה id    inspector_id    dayWork    start_shift    stop_shift   
-
-    return(
+    return(myRoute &&
         <>
-        <Grid container direction='row' sx={{marginRight:'5px'}}>
-              
-              <Grid item sx={{ margin: 'auto' }}>
+        <Grid container spacing={3} direction='row-reverse' sx={{marginTop:'20px',marginRight:'70px'}}>
+        <Grid item sx={{marginLeft:'60px',marginRight:'70px'}}>
+                 <AllShifts />
+              </Grid>
+              <Grid item sx={{marginLeft:'600px',fontFamily:'Assistant SemiBold',fontSize:'2.7vh'}}>
                  <div>
-               shift {params.id}
+               משמרת {params.id}
                </div>
                   
                     <Paper sx={{ width: '100%' }}>
-      <TableContainer sx={{ maxHeight: 440 ,maxWidth:400}}>
+        <TableContainer sx={{ maxHeight: 700 ,maxWidth:400,marginTop:'50px'}}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -79,7 +97,7 @@ export default function Shift() {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ top: 57, minWidth: column.minWidth }}
+                  style={{  minWidth: column.minWidth }}
                 >
                   {column.label}
                 </TableCell>
@@ -89,9 +107,9 @@ export default function Shift() {
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map((row,index) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
@@ -119,11 +137,14 @@ export default function Shift() {
       />
     </Paper>
               </Grid>
-              <Grid item sx={{ marginRight:'5vw' }}>
-                 <AllShifts />
-              </Grid>
+             
+              <Grid item sx={{marginTop:'50px'}}>
+          
+                <ShowRouteMap  data={dataMap} style={{width:'20%',height:'50%'}}/>
+
+                </Grid>
           </Grid>
-        
+          
        
 </>
     );

@@ -11,14 +11,30 @@ import AddInspector from './components/AddInspector';
 import DeleteInspector from './components/DeleteInspector';
 import AllShifts from './components/AllShifts';
 import Shift from './components/Shift';
+import AllShiftsToday from './components/allShiftsToday';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import MenuAppBar from './components/MapContainer'
 // import DeleteShift from './components/DeleteShift';
 
 function App() {
   
+let theme = createTheme();
+theme = createTheme(theme, {
+  
+  palette: {
+    primary: {
+      main: "#6a1b9a",
+      light: "#8e24aa",
+      dark: "#ce93d8",
+    },
+  },
+});
   return (<>
     <div className="App">
+    <ThemeProvider theme={theme}>
     <ResponsiveAppBar />
-    </div>
+    {/* <MenuAppBar/> */}
+    
     <Routes>
       <Route path='' element={<Home/>}/>
       <Route path='/' element={<Home/>}/>
@@ -33,12 +49,15 @@ function App() {
       <Route path='/deleteInspector' element={<DeleteInspector/>}/>
       <Route path='/allshifts' element={<AllShifts/>}/>
       <Route path=':id' element={<Shift/>}/>
+      <Route path='/allshiftsToay' element={<AllShiftsToday/>}/>
       <Route path='*' element={<Home/>}/>
 
 
 
 
     </Routes>
+    </ThemeProvider>
+    </div>
     </>
   );
 }

@@ -23,76 +23,46 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 
-// function createData(name, calories, fat, carbs, protein) {
-//     return { name, calories, fat, carbs, protein };
-//   }
+function createData(day, begining_time, end_time) {
+    return { day, begining_time, end_time };
+  }
   
-//   const rows = [
-//     createData(' ראשון', 159, 6.0, 24, 4.0),
-//     createData('שני', 237, 9.0, 37, 4.3),
-//     createData('שלישי', 262, 16.0, 24, 6.0),
-//     createData('רביעי', 305, 3.7, 67, 4.3),
-//     createData('חמישי', 356, 16.0, 49, 3.9),
-//   ];
-
-
 export default function AddShift() {
   const location=useLocation();
-  const[deleteUpdate,setdeleteUpdate]=useState();
     const [add,setadd]=useState({'daywork':null,'startShift':null,'stopShift':null})
-    const [status, setstatus] = useState(0);
-    const[rows,setrows]=useState(null);
+    const[rows,setrows]=useState([]);
     const [pass, setpass] =useState({'pass':null});
-    const[error,seterror]=useState(false);
+    const[click,setClick]=useState(false);
     React.useEffect(()=>{ async function fetchData()
        { pass.pass = location.state;
         setpass({ ...pass });
         console.log(pass.pass);
         const promise = await axios.post("https://localhost:44314/api/WorkHours/PostAllWorkHours",pass );
-        
+        //dayWork    start_shift    stop_shift 
          console.log(promise.data);
         
         // debugger;
   
         let x=promise.data;
         let arr=[];
+        console.log('data:::');
         console.log(x);
         // debugger;
         // console.log(Object.values(x));
 
-        Object.values(x).forEach(element => {
-          let temp={day:null,shift1:null,shift2:null,shift3:null,shift4:null};
-          console.log(element);
-        //   debugger;
-          if(element.length>0){
-               if(element[0]!==undefined){
-                   temp.day=element[0].dayWork;
-                   temp.shift1=`${element[0].start_shift}-${element[0].stop_shift}`;
-               }
-               if(element[1]!==undefined){
-                temp.shift1=`${element[0].start_shift}-${element[0].stop_shift}`;
-            }
-            if(element[2]!==undefined){
-                temp.shift1=`${element[0].start_shift}-${element[0].stop_shift}`;
-            }
-            if(element[3]!==undefined){
-                temp.shift1=`${element[0].start_shift}-${element[0].stop_shift}`;
-            }
-          
-          }
-          if(temp.day!==null){
-            arr.push(temp);
-          }
-          
+        Object.values(x).forEach(arrs => {
+          Object.values(arrs).forEach(element=>{
+          arr.push(createData( element.dayWork,element.start_shift,element.stop_shift))})
   });
+  console.log('rows:::');
   console.log(arr);
   setrows(arr);}
   fetchData();
       },[])
     
-const deleteUpdateShift=()=>{
+// const deleteUpdateShift=()=>{
 
-}
+// }
 
 return (rows && <Box sx={{ flexGrow: 1 }}>
         
@@ -113,27 +83,25 @@ return (rows && <Box sx={{ flexGrow: 1 }}>
       <TableContainer component={Paper} sx={{ maxWidth: 700 }} dir='rtl' >
       <Table sx={{ maxWidth: 700 }} aria-label="simple table">
         <TableHead>
-          <TableRow>
-            <TableCell>יום</TableCell>
-            <TableCell align="center">שעות</TableCell>
-            <TableCell align="center">    </TableCell>
-            <TableCell align="center">    </TableCell>
-            <TableCell align="center">    </TableCell>
+          <TableRow sx={{fontFamily:'Assistant SemiBold',fontSize:'3vh' }} >
+            <TableCell align="center" sx={{fontFamily:'Assistant SemiBold',fontSize:'3vh',  color:"#4a148c" }}>יום</TableCell>
+
+            <TableCell align="center"sx={{fontFamily:'Assistant SemiBold',fontSize:'3vh',  color:"#4a148c" }}>שעת התחלה</TableCell>
+            <TableCell align="center"sx={{fontFamily:'Assistant SemiBold',fontSize:'3vh',  color:"#4a148c" }}> שעת סיום   </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows.map((row,index) => (
             <TableRow
-              key={row.day}
+              key={index}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              style={{ backgroundColor:index==3? '#ce93d8':''}} 
             >
-              <TableCell component="th" scope="row">
-              <Link onClick={deleteUpdateShift} color='inherit' underline="none" href='#'>{row.day}</Link>
-              </TableCell>
-              <TableCell  align="center"><Link onClick={deleteUpdateShift} color='inherit' underline="none" href='#'>{row.shift1}</Link></TableCell>
-              <TableCell align="center"><Link onClick={deleteUpdateShift} color='inherit' underline="none" href='#'>{row.shift2}</Link></TableCell>
-              <TableCell align="center"><Link onClick={deleteUpdateShift} color='inherit' underline="none" href='#'>{row.shift3}</Link></TableCell>
-              <TableCell align="center"><Link onClick={deleteUpdateShift} color='inherit' underline="none" href='#'>{row.shift4}</Link></TableCell>
+
+              <TableCell  align="center" ><Link  underline="none" href='#'   >{row.day}</Link></TableCell>
+              <TableCell align="center"><Link  underline="none" href='#'  >{row.begining_time}</Link></TableCell>
+              <TableCell align="center"><Link underline="none" href='#'  >{row.end_time}</Link></TableCell>
+
             </TableRow>
           ))}
         </TableBody>
@@ -194,7 +162,7 @@ return (rows && <Box sx={{ flexGrow: 1 }}>
         />
       </Grid>
       <Grid item xs={12} sm={12} lg={12}>
-        <Button variant="outlined" fullWidth >
+        <Button variant="contained" fullWidth    sx={{  backgroundColor:"#8e24aa"}}>
           הוסף משמרת
         </Button>
       </Grid>
@@ -237,7 +205,7 @@ return (rows && <Box sx={{ flexGrow: 1 }}>
         />
       </Grid>
       <Grid item xs={12} sm={12} lg={12}>
-        <Button variant="outlined" fullWidth >
+        <Button variant="contained" fullWidth    sx={{  backgroundColor:"#8e24aa"}}>
           שנה שעות משמרת
         </Button>
 </Grid>

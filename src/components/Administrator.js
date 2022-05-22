@@ -83,20 +83,20 @@ return ( rows && <Box sx={{ flexGrow: 1 }}>
       <Container component="main" maxWidth="lg">
       <CssBaseline />
       <Box>
-      <TableContainer component={Paper}   style={{marginTop:"30px"}}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+      <TableContainer component={Paper}   style={{marginTop:"30px"}}dir='rtl'>
+      <Table sx={{ minWidth: 700 }} aria-label="customized table" dir='rtl'>
         <TableHead>
           <TableRow>
-            <StyledTableCell>Inspector name</StyledTableCell>
-            <StyledTableCell align="right">password</StyledTableCell>
-            <StyledTableCell align="right">city</StyledTableCell>
-            <StyledTableCell align="right">area</StyledTableCell>
-            <StyledTableCell align="right">street</StyledTableCell>
-            <StyledTableCell align="right">num house</StyledTableCell>
-            <StyledTableCell align="center">phone</StyledTableCell>
+            <StyledTableCell>שם פקח</StyledTableCell>
+            <StyledTableCell align="right">סיסמא</StyledTableCell>
+            <StyledTableCell align="right">עיר</StyledTableCell>
+            <StyledTableCell align="right">אזור</StyledTableCell>
+            <StyledTableCell align="right">רחוב</StyledTableCell>
+            <StyledTableCell align="right">מספר בית</StyledTableCell>
+            <StyledTableCell align="center">טלפון</StyledTableCell>
             <StyledTableCell align="center">lon</StyledTableCell>
             <StyledTableCell align="center">lat</StyledTableCell>
-            <StyledTableCell align="center">shift</StyledTableCell>
+            <StyledTableCell align="center">משמרות</StyledTableCell>
             
           </TableRow>
         </TableHead>
@@ -114,7 +114,7 @@ return ( rows && <Box sx={{ flexGrow: 1 }}>
               <StyledTableCell align="right">{row.phone}</StyledTableCell>
               <StyledTableCell align="right">{row.lon}</StyledTableCell>
               <StyledTableCell align="right">{row.lat}</StyledTableCell>
-              <Button onClick={()=>navigate('/addShift',{state:row.password})} style={{margin: "5px"}} variant="outlined">משמרת</Button>
+              <Button onClick={()=>navigate('/addShift',{state:row.password})} style={{margin: "5px"}} variant="outlined">משמרות</Button>
 
               {/* <Button onClick={()=>setshift(2)} variant="outlined">מחיקת משמרת</Button> */}
             </StyledTableRow>
