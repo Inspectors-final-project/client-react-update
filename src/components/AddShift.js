@@ -22,7 +22,7 @@ import { Grid } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
-
+import '../css/AddShift.css'
 function createData(day, begining_time, end_time) {
     return { day, begining_time, end_time };
   }
@@ -96,6 +96,7 @@ return (rows && <Box sx={{ flexGrow: 1 }}>
               key={index}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               style={{ backgroundColor:index==3? '#ce93d8':''}} 
+              hover
             >
 
               <TableCell  align="center" ><Link  underline="none" href='#'   >{row.day}</Link></TableCell>

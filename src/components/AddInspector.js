@@ -8,6 +8,11 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 // import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -20,6 +25,11 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Shift from './Shift';
 import { useNavigate } from 'react-router-dom';
+
+const filterOptions = createFilterOptions({
+  matchFrom: 'start',
+  stringify: (option) => option,
+});
 // import swal from "sweetalert2"
 function Copyright(props) {
   return (
@@ -36,11 +46,13 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function AddInspector() {
+  const areas=['בקעת אונו','חשמונאים','חדרה','נתניה','עמק האלה-ביתר עילית'];
+  const cities=['צפת','באר שבע','תל אביב','ירושלים','רמת גן','בני ברק']
   const navigate=useNavigate();
   const pass={'pass':null}
   const [error, seterror] = useState(false);
     const [inspector, setinspector] = useState({ 'inspector_name': null ,'city':null,
-'area':null, 'street':null, 'num_house':null,'phone':null,
+'area':'', 'street':null, 'num_house':null,'phone':null,
 'inspector_lon':null,'inspector_lat':null,'inspector_password':null});
 const sendToDb = async() => {
   pass.pass=inspector.inspector_password;
@@ -101,51 +113,59 @@ const toShift=(event)=>{
           </Typography>     
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12}>
+              <Grid item xs={12}  dir='rtl'>
                 <TextField
                   autoComplete="given-name"
                   name="name"
                   required
                   fullWidth
                   id="name"
-                  label="Name"
+                  label="name"
                   autoFocus
                   onChange={(e) => {
                     inspector.inspector_name = e.target.value;
                     setinspector({ ...inspector });
                     console.log(inspector);
                   }}
+                  dir='rtl'
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="city"
-                  label="City"
-                  name="city"
-                  autoComplete="city-name"
-                  onChange={(e) => {
-                    inspector.city = e.target.value;
-                    setinspector({ ...inspector });
-                    console.log(inspector);
-                  }}
-                />
+              <Autocomplete
+      id="filter-demo"
+      options={cities}
+      getOptionLabel={(option) => option}    
+      filterOptions={filterOptions} 
+      onChange={(e,value) => {
+        inspector.city =value;
+        setinspector({ ...inspector });
+        console.log(value);
+      }}
+     dir='rtl'
+      renderInput={(params) => <TextField {...params} label="עיר"     
+    
+      dir='rtl'/>}
+    />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="area"
-                  label="Area"
-                  name="area"
-                  autoComplete="city-name"
-                  onChange={(e) => {
-                    inspector.area = e.target.value;
-                    setinspector({ ...inspector });
-                    console.log(inspector);
-                  }}
-                />
+              <FormControl fullWidth dir='rtl'>
+        <InputLabel id="demo-simple-select-label" dir='rtl'>אזור *</InputLabel>
+        <Select 
+          labelId="demo-simple-select-label"
+          id="area"
+          value={inspector.area}
+          label="אזור"
+          onChange={(e) => {
+            inspector.area = e.target.value;
+            setinspector({ ...inspector });
+            console.log(inspector);
+          }} dir='rtl'
+        >
+           {areas.map((area,index) => (
+          <MenuItem key={index} value={area} dir='rtl'>{area}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
               </Grid>
               <Grid item xs={12} sm={8}>
                 <TextField
@@ -193,6 +213,7 @@ const toShift=(event)=>{
                   }}
                 />
               </Grid>
+              
               <Grid item xs={12}>
                 <TextField
                   required

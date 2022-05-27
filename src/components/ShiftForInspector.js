@@ -29,7 +29,7 @@ const columns = [
 
 
 //s.stop_code, s.stop_name, s.stop_lon.Value, s.stop_lat.Value, r.route_short_name, r.route_long_name
-export default function Shift() {
+export default function ShiftForInspector() {
     const params=useParams()
     const location=useLocation()
     const currWorkID={'pass':location.state.value.id}
@@ -80,13 +80,9 @@ export default function Shift() {
     return(myRoute &&
         <>
         <Grid container spacing={3} direction='row-reverse' sx={{marginTop:'20px',marginRight:'70px'}}>
-        <Grid item sx={{marginLeft:'60px',marginRight:'70px'}}>
-                 <AllShifts />
-              </Grid>
+      
               <Grid item sx={{marginLeft:'600px',fontFamily:'Assistant SemiBold',fontSize:'2.7vh'}}>
-                 <div>
-               משמרת {params.id}
-               </div>
+         
                   
                     <Paper sx={{ width: '100%' }}>
         <TableContainer sx={{ maxHeight: 700 ,maxWidth:400,marginTop:'50px'}}>

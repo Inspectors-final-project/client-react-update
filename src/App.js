@@ -14,6 +14,7 @@ import Shift from './components/Shift';
 import AllShiftsToday from './components/allShiftsToday';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuAppBar from './components/MapContainer'
+import ShiftForInspector from './components/ShiftForInspector';
 // import DeleteShift from './components/DeleteShift';
 
 function App() {
@@ -49,6 +50,7 @@ theme = createTheme(theme, {
       <Route path='/deleteInspector' element={<DeleteInspector/>}/>
       <Route path='/allshifts' element={<AllShifts/>}/>
       <Route path=':id' element={<Shift/>}/>
+      <Route path='/ShiftForInspector' element={<ShiftForInspector/>}/>
       <Route path='/allshiftsToay' element={<AllShiftsToday/>}/>
       <Route path='*' element={<Home/>}/>
 

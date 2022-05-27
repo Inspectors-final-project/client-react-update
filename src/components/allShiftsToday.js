@@ -12,6 +12,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: '',
@@ -32,16 +33,19 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     },
   }));
   
-  function createData(name,start_shift, stop_shift) {
-    return { name,start_shift, stop_shift };
+  function createData(id,name,start_shift, stop_shift) {
+    return {id, name,start_shift, stop_shift };
   }
   
 export default function AllShiftsToday() {
+  const navigate=useNavigate(); 
     const [rows,setRows]=React.useState(null)
     React.useEffect(()=>{
         async function fetchData(){
       const promise = await axios.get("https://localhost:44314/api/Result");
       //  debugger;
+      console.log("promise.data");
+
       console.log(promise.data);
       let x=promise.data;
       let arr=[];
@@ -51,7 +55,7 @@ export default function AllShiftsToday() {
       Object.values(x).forEach( element => {
         console.log(element);
         // debugger;
-      arr.push(createData(element.nameInspector,element.start_shift,element.stop_shift)) 
+      arr.push(createData(element.id,element.nameInspector,element.start_shift,element.stop_shift)) 
     //   console.log("element::");
     //    console.log(arr)
 });
@@ -92,14 +96,16 @@ return (rows &&
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row,index) => (
+          {rows.map((value,index) => (
             <StyledTableRow key={index}>
               <StyledTableCell align='right'>
-                {row.name}
+                {value.name}
               </StyledTableCell>
-              <StyledTableCell align="center">{row.start_shift}</StyledTableCell>
-              <StyledTableCell align="center">{row. stop_shift}</StyledTableCell>
-             <StyledTableCell align="center"><Button  style={{margin: "5px"}} variant="outlined">צפה במסלול</Button></StyledTableCell>
+              <StyledTableCell align="center">{value.start_shift}</StyledTableCell>
+              <StyledTableCell align="center">{value. stop_shift}</StyledTableCell>
+             <StyledTableCell align="center"><Button  style={{margin: "5px"}} variant="outlined"  onClick={() => { console.log("value:",value);                             
+                             navigate("/ShiftForInspector",{state:{value}})}}>  צפה במסלול</Button></StyledTableCell>
+                       
             </StyledTableRow>
           ))}
         </TableBody>

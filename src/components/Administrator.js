@@ -101,8 +101,8 @@ return ( rows && <Box sx={{ flexGrow: 1 }}>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.password}>
+          {rows.map((row,index) => (
+            <StyledTableRow key={index}>
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
