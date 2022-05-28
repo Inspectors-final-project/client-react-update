@@ -135,7 +135,7 @@ const sendToDb = async() => {
                   autoFocus
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.inspector_name && touched.inspector_name}
+                  // error={errors.inspector_name && touched.inspector_name}
                   dir='rtl'
                 />
                       {errors.inspector_name && touched.inspector_name && <Alert severity="error">{errors.inspector_name}</Alert>}
@@ -152,7 +152,7 @@ const sendToDb = async() => {
            
           }}
           onBlur={handleBlur}
-          error={errors.city && touched.city}
+          // error={errors.city && touched.city}
      dir='rtl'
       renderInput={(params) => <TextField {...params} label="עיר"     
     
@@ -170,7 +170,7 @@ const sendToDb = async() => {
           label="אזור"
           onChange={handleChange} 
           onBlur={handleBlur}
-          error={errors.area }
+          // error={errors.area }
           dir='rtl'
         >
            {areas.map((area,index) => (
@@ -189,7 +189,7 @@ const sendToDb = async() => {
                   autoComplete="given"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.street && touched.street}
+                  // error={errors.street && touched.street}
                 />
                     {errors.street && touched.street && <Alert severity="error">{errors.street}</Alert>}
               </Grid>
@@ -203,7 +203,7 @@ const sendToDb = async() => {
                   autoComplete="given"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.num_house && touched.num_house}
+                  // error={errors.num_house && touched.num_house}
                 />
                     {errors.num_house && touched.num_house && <Alert severity="error">{errors.num_house}</Alert>}
 
@@ -218,7 +218,7 @@ const sendToDb = async() => {
                   autoComplete="phone"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.phone && touched.phone}
+                  // error={errors.phone && touched.phone}
                 />
               </Grid>
               {errors.phone && touched.phone && <Alert severity="error">{errors.phone}</Alert>}
@@ -233,7 +233,7 @@ const sendToDb = async() => {
                   autoComplete="new-password"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.inspector_password && touched.inspector_password}
+                  // error={errors.inspector_password && touched.inspector_password}
                   
                 />   
                 {errors.inspector_password && touched.inspector_password && <Alert severity="error">{errors.inspector_password}</Alert>}
@@ -247,7 +247,7 @@ const sendToDb = async() => {
                   name="inspector_lon"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.inspector_lon && touched.inspector_lon}
+                  // error={errors.inspector_lon && touched.inspector_lon}
                 />
                 {errors.inspector_lon && touched.inspector_lon && <Alert severity="error">{errors.inspector_lon}</Alert>}
               </Grid>
@@ -260,7 +260,7 @@ const sendToDb = async() => {
                   name="inspector_lat"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  error={errors.inspector_lat && touched.inspector_lat}
+                  // error={errors.inspector_lat && touched.inspector_lat}
                 />
                   {errors.inspector_lat && touched.inspector_lat && <Alert severity="error">{errors.inspector_lat}</Alert>}
               </Grid>
