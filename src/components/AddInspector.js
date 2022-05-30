@@ -184,7 +184,7 @@ const sendToDb = async() => {
                   
                   fullWidth
                   id="street"
-                  label="Street"
+                  label="רחוב"
                   name="street"
                   autoComplete="given"
                   onChange={handleChange}
@@ -198,7 +198,7 @@ const sendToDb = async() => {
                   type='number'
                   fullWidth
                   id="num_house"
-                  label="Num House"
+                  label="מספר בית"
                   name="num_house"
                   autoComplete="given"
                   onChange={handleChange}
@@ -213,7 +213,7 @@ const sendToDb = async() => {
                   
                   fullWidth
                   name="phone"
-                  label="Phone"            
+                  label="טלפון"            
                   id="phone"
                   autoComplete="phone"
                   onChange={handleChange}
@@ -227,7 +227,7 @@ const sendToDb = async() => {
                   
                   fullWidth
                   name="inspector_password"
-                  label="Password"
+                  label="סיסמה"
                   type="password"
                   id="inspector_password"
                   autoComplete="new-password"
@@ -243,7 +243,7 @@ const sendToDb = async() => {
                   
                   fullWidth
                   id="inspector_lon"
-                  label="Lon"
+                  label="קו אורך"
                   name="inspector_lon"
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -256,7 +256,7 @@ const sendToDb = async() => {
                   required
                   fullWidth
                   id="inspector_lat"
-                  label="Lat"
+                  label="קו רוחב"
                   name="inspector_lat"
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -273,7 +273,7 @@ const sendToDb = async() => {
             </Grid>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label="זכרו אותי"
             />
             {/* {error ? <label className='error'>הסיסמא כבר קיימת*</label> : null} */}
             {/* <Button fullWidth
