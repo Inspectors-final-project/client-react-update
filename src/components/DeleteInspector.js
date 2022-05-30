@@ -84,7 +84,7 @@ export default function DeleteInspector() {
               required
               fullWidth
               id="userName"
-              label="User Name"
+              label="שם משתמש"
               name="userName"
               autoComplete="given-name"
               autoFocus
@@ -94,7 +94,7 @@ export default function DeleteInspector() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="סיסמה"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -128,7 +128,7 @@ export default function DeleteInspector() {
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  שכחת סיסמא?
                 </Link>
               </Grid>
               
